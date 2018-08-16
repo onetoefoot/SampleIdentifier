@@ -15,6 +15,7 @@ class SampleidentifierServiceProvider extends ServiceProvider
     {
         $this->registerConfig();
         $this->registerViews();
+        $this->registerMigrations();
         $this->loadRoutesFrom(__DIR__.'/routes.php');
     }
 
@@ -25,6 +26,7 @@ class SampleidentifierServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->loadRoutesFrom(__DIR__.'/routes.php');
     }
 
     /**
@@ -52,5 +54,19 @@ class SampleidentifierServiceProvider extends ServiceProvider
 
         $this->loadViewsFrom($path, 'sampleidentifier');
 
+    }
+
+    /**
+     * Register migrations
+     *
+     * @return void
+     */
+    public function registerMigrations()
+    {
+        if (! class_exists('CreateSiRecordTable')) {
+            $this->publishes([
+                __DIR__.'/../database/migrations/create_si_record_table.php.stub' => database_path('migrations/'.date('Y_m_d_His', time()).'_create_si_record_table.php'),
+            ], 'migrations');
+        }
     }
 }

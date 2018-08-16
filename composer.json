@@ -5,9 +5,11 @@
     "authors": [
         {
             "name": "Jody Castro",
-            "email": "jcandothers@gmail.com"
+            "email": "jcandothers@gmail.com",
+            "homepage": "https://www.jodycastro.com"
         }
     ],
+    "minimum-stability": "stable",
     "require": {
         "nesbot/carbon": "^1.25",
         "league/csv": "^9.1"

@@ -5,23 +5,13 @@ namespace Onetoefoot\Sampleidentifier\Controllers;
 use Onetoefoot\Sampleidentifier\Models\SiRecord;
 use Carbon\Carbon;
 use League\Csv\Writer;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use Validator;
 
-class RecordController extends Controller
+class RecordController
 {
-     /**
-      * Create a new controller instance.
-      *
-      * @return void
-      */
-     public function __construct()
-     {
-         $this->middleware('auth');
-     }
 
     /**
      * Display a listing of the resource.
@@ -30,7 +20,7 @@ class RecordController extends Controller
      */
     public function index()
     {
-        $records = Record::where('user_id', \Auth::user()->id)->get();
+        $records = SiRecord::where('user_id', \Auth::user()->id)->get();
         return view('sampleidentifier::records.index', ["records" => $records]);
     }
 
@@ -41,7 +31,7 @@ class RecordController extends Controller
      */
     public function create()
     {
-        //
+        return view('sampleidentifier::records.create');
     }
 
     /**
@@ -54,7 +44,7 @@ class RecordController extends Controller
     {
         if ($request->is('api/records'))
         {
-            $record = Record::create($request->all());
+            $record = SiRecord::create($request->all());
             return response()->json($record, 201);
         }
     }
@@ -72,7 +62,7 @@ class RecordController extends Controller
         // return new ArticleResource($article);
         if ($id == 'download-all')
         {
-            $records = Record::where('user_id', \Auth::user()->id)->get();
+            $records = SiRecord::where('user_id', \Auth::user()->id)->get();
             $records = $records->toArray();
 
             $csv = Writer::createFromFileObject(new \SplTempFileObject());
@@ -92,7 +82,9 @@ class RecordController extends Controller
      */
     public function edit($id)
     {
-        //
+        $si_record = SiRecord::findOrFail($id);
+
+        return view('sampleidentifier:records.edit', compact('so_record'));
     }
 
     /**
