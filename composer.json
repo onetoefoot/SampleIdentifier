@@ -1,0 +1,32 @@
+{
+    "name": "onetoefoot/sampleidentifier",
+    "description": "Sample Identifier",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jody Castro",
+            "email": "jcandothers@gmail.com"
+        }
+    ],
+    "require": {
+        "nesbot/carbon": "^1.25",
+        "league/csv": "^9.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Onetoefoot\\Sampleidentifier\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+          "Onetoefoot\\Sampleidentifier\\Test\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Onetoefoot\\Sampleidentifier\\SampleidentifierServiceProvider"
+            ]
+          }
+    }
+}
