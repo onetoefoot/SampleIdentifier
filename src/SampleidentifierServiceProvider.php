@@ -16,7 +16,6 @@ class SampleidentifierServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->registerMigrations();
-        $this->loadRoutesFrom(__DIR__.'/routes.php');
     }
 
     /**
@@ -26,7 +25,8 @@ class SampleidentifierServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->loadRoutesFrom(__DIR__.'/routes.php');
+        $this->loadRoutesFrom(__DIR__.'/routes/web.php');
+        $this->loadRoutesFrom(__DIR__.'/routes/api.php');
     }
 
     /**
@@ -49,11 +49,9 @@ class SampleidentifierServiceProvider extends ServiceProvider
      */
     public function registerViews()
     {
-        $destinationPath = base_path('resources/views/docs');
         $path = __DIR__.'/resources/views';
 
         $this->loadViewsFrom($path, 'sampleidentifier');
-
     }
 
     /**

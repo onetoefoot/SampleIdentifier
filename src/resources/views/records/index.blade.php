@@ -17,7 +17,8 @@
                     <th>{{ __('Identifier')}}</th>
                     <th>{{ __('Sample')}}</th>
                     <th>{{ __('Session')}}</th>
-                    <th>{{ __('Create At')}}</th>
+                    <th>{{ __('Created At')}}</th>
+                    <th>{{ __('Operations')}}</th>
                 </tr>
             </thead>
             <tfoot>
@@ -26,6 +27,7 @@
                     <th>{{ __('Sample')}}</th>
                     <th>{{ __('Session')}}</th>
                     <th>{{ __('Created At')}}</th>
+                    <th>{{ __('Operations')}}</th>
                 </tr>
             </tfoot>
             <tbody>
@@ -37,10 +39,10 @@
                     <td>{{ $record->created_at->format('F d, Y h:ia') }}</td>
                     <td>
                         @include('includes.forms.edit-record', [
-                                'route' => route('records.edit', $record->id)
+                                'route' => route('sampleidentifier.edit', $record->id)
                             ])
                         @include('includes.forms.delete-record', [
-                                'route' => route('records.destroy' ,$record->id)
+                                'route' => route('sampleidentifier.destroy' ,$record->id)
                             ])
                     </td>
                 </tr>

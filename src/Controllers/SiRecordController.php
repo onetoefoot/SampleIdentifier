@@ -10,9 +10,8 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use Validator;
 
-class RecordController
+class SiRecordController
 {
-
     /**
      * Display a listing of the resource.
      *
