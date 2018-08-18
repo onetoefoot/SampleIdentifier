@@ -38,7 +38,9 @@ class SiRecordController
 
         $siRecord = SiRecord::insert($data['data']);
         
-        return array('data', array('status' => 'success'));
+        return [
+            'data' => array('status' => 'success')
+        ];
     }
 
     /**
