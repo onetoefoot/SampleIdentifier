@@ -1,5 +1,7 @@
 <?php
 
-Route::group(['middleware' => ['auth:api', 'tenancy.enforce']], function(){
-    Route::apiResource('/api/sampleidentifier', 'Onetoefoot\\Sampleidentifier\\Controllers\\Api\\SiRecordController');
+Route::group(['prefix' => 'api', 'middleware' => ['auth:api', 'tenancy.enforce']], function(){
+    Route::apiResource('sampleidentifier', 'Onetoefoot\\Sampleidentifier\\Controllers\\Api\\SiRecordController',[
+        'as' => 'api'
+    ]);
 });

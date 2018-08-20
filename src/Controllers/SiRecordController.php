@@ -106,22 +106,12 @@ class SiRecordController
      */
     public function destroy($id)
     {
-        $currentUser = \Auth::user();
-        if ($id == 'all')
-        {
-            $deletedRows = Record::where('user_id', $currentUser->id)->delete();
-            return redirect('records')->with('success', __('recordmanagement.deleteAllSuccess'));
-        }
-         $record = Record::findOrFail($id);
+        $siRecord = SiRecord::findOrFail($id);
+        $siRecord->delete();
 
-         if ($record->user_id == $currentUser->id)
-         {
-             $record->save();
-             $record->delete();
+        return redirect()->route('sampleidentifier.index')
+            ->with('flash_message',
+             'Sample deleted!');
 
-             return redirect('records')->with('success', __('recordmanagement.deleteSuccess'));
-         }
-
-         return back()->with('records', __('recordmanagement.deleteSelfError'));
     }
 }
